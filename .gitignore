@@ -1,4 +1,7 @@
 Library 
 Temp
 Packages
+.vs
+obj
 *.sln
+*.csproj
