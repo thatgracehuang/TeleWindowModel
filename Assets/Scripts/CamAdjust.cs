@@ -13,6 +13,7 @@ public class CamAdjust : MonoBehaviour {
     [Range(20, 50)]
     [Tooltip("Diagonal of the screen in inches")]
     public float screenSize = 40;
+	public bool corner = true;
     const float DIAGONAL_ANGLE = 0.51238946f;
 
     // Use this for initialization
@@ -26,7 +27,9 @@ public class CamAdjust : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        Vector3[] p = CalculatePositions();
+			//Vector3[] p = CalculatePositions ();
+			Vector3[] p = CalculateEdgePositions ();
+		
         ApplyPositions(p);
     }
 
@@ -39,6 +42,16 @@ public class CamAdjust : MonoBehaviour {
         };
         return p;
     }
+
+	Vector3[] CalculateEdgePositions() {
+		Vector3[] p = {
+			new Vector3( 0.0f,  Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
+			new Vector3(-Mathf.Cos(DIAGONAL_ANGLE),  0.0f)*screenSize*0.0254f*0.5f,
+			new Vector3(0.0f, -Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
+			new Vector3( Mathf.Cos(DIAGONAL_ANGLE), 0.0f)*screenSize*0.0254f*0.5f
+		};
+		return p;
+	}
 
     void ApplyPositions(Vector3[] pos) {
         for (int i = 0; i < pos.Length; ++i) {
