@@ -46,7 +46,7 @@ public class CamAdjust : MonoBehaviour {
                 break;
             }
 
-            cams[i].transform.position = pos[i];
+            cams[i].transform.position = transform.position + pos[i];
         }
     }
 
