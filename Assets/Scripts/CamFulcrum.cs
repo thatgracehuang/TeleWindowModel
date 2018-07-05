@@ -22,6 +22,7 @@ public class CamFulcrum : MonoBehaviour {
     public float maxDist = 10f;
 
     public Material fulcrumMaterial;
+    public bool displayFrustrum = true;
 
     Mesh fulcrum;
 
@@ -31,6 +32,7 @@ public class CamFulcrum : MonoBehaviour {
 
     MeshFilter mf;
     MeshRenderer mr;
+    Projector proj;
 
 	// Use this for initialization
 	void Start () {
@@ -53,10 +55,12 @@ public class CamFulcrum : MonoBehaviour {
 
         fulcrum.MarkDynamic();
 
-        mf = gameObject.GetComponent<MeshFilter>();
+        mf = GetComponent<MeshFilter>();
         mf.mesh = fulcrum;
-        mr = gameObject.GetComponent<MeshRenderer>();
+        mr = GetComponent<MeshRenderer>();
         mr.material = fulcrumMaterial;
+
+        proj = GetComponent<Projector>();
     }
 	
 	// Update is called once per frame
@@ -70,13 +74,22 @@ public class CamFulcrum : MonoBehaviour {
         fulcrum.RecalculateNormals();
         fulcrum.RecalculateBounds();
 
+
+        proj.nearClipPlane = minDist;
+        proj.farClipPlane = maxDist;
+        proj.fieldOfView = vFOV;
+
+        proj.material.SetVector("_Forward", (Vector4)proj.transform.forward);
+
+        mr.enabled = displayFrustrum;
     }
 
-    private void OnDrawGizmos() {
-        for (int i = 0; i < verts.Count; ++i) {
-            Gizmos.DrawSphere(verts[i], 0.01f);
-        }
-    }
+    //private void OnDrawGizmos() {
+    //    for (int i = 0; i < verts.Count; ++i) {
+            
+    //        Gizmos.DrawSphere(verts[i], 0.01f);
+    //    }
+    //}
 
     void CalculateVerts(ref List<Vector3> v) {
         // Cache relevant angles in radians

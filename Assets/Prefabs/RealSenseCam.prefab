@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 23777856568660110}
   - component: {fileID: 33681759553479882}
   - component: {fileID: 114397742540247634}
+  - component: {fileID: 119955811637448914}
   m_Layer: 0
   m_Name: RealSenseCam
   m_TagString: Untagged
@@ -578,8 +579,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855867112895838}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.27223197, y: 0.0019724274, z: 0.09422843, w: 0.95760477}
+  m_LocalPosition: {x: -0.10540341, y: 1.7849534, z: 1.4482038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4330654272703250}
@@ -606,7 +607,7 @@ Transform:
   - {fileID: 4111527258771898}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 31.4, y: 3.7, z: 12.28}
 --- !u!4 &4522067945274890
 Transform:
   m_ObjectHideFlags: 1
@@ -1465,7 +1466,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1855867112895838}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1704,5 +1705,24 @@ MonoBehaviour:
   hFOV: 69.4
   vFOV: 42.5
   minDist: 0.3
-  maxDist: 4.23
+  maxDist: 4.7
   fulcrumMaterial: {fileID: 2100000, guid: f5858d976321d6b4293f0d27a2ce82c8, type: 2}
+  displayFrustrum: 0
+--- !u!119 &119955811637448914
+Projector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1855867112895838}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_NearClipPlane: 0.3
+  m_FarClipPlane: 4.7
+  m_FieldOfView: 42.5
+  m_AspectRatio: 1.7777778
+  m_Orthographic: 0
+  m_OrthographicSize: 10
+  m_Material: {fileID: 2100000, guid: 2786c2b3dbe9d6940986e721fc832864, type: 2}
+  m_IgnoreLayers:
+    serializedVersion: 2
+    m_Bits: 0

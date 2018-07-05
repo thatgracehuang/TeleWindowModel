@@ -13,13 +13,17 @@ public class CamAdjust : MonoBehaviour {
     [Range(20, 50)]
     [Tooltip("Diagonal of the screen in inches")]
     public float screenSize = 40;
-	public bool corner = true;
     const float DIAGONAL_ANGLE = 0.51238946f;
+
+    public enum SetupType {
+        Corners,
+        Edges
+    };
+
+    public SetupType setup = SetupType.Corners;
 
     // Use this for initialization
     void Start() {
-        // Figure out the camera's positions in the corners. We want the center of the screen to be the origin.
-        // Position in unit circle * half screen size * inches to meters
         Vector3[] positions = CalculatePositions();
 
         GenerateCams(positions);
@@ -27,13 +31,25 @@ public class CamAdjust : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-			//Vector3[] p = CalculatePositions ();
-			Vector3[] p = CalculateEdgePositions ();
-		
+        Vector3[] p = CalculatePositions();
+
         ApplyPositions(p);
     }
 
     Vector3[] CalculatePositions() {
+        switch (setup) {
+            case SetupType.Corners:
+                return CalculateCornerPositions();
+            case SetupType.Edges:
+                return CalculateEdgePositions();
+            default:
+                return CalculateCornerPositions();
+        }
+    }
+
+    Vector3[] CalculateCornerPositions() {
+        // Figure out the camera's positions in the corners. We want the center of the screen to be the origin.
+        // Position in unit circle * half screen size * inches to meters
         Vector3[] p = {
             new Vector3( Mathf.Cos(DIAGONAL_ANGLE),  Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
             new Vector3(-Mathf.Cos(DIAGONAL_ANGLE),  Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
@@ -43,15 +59,15 @@ public class CamAdjust : MonoBehaviour {
         return p;
     }
 
-	Vector3[] CalculateEdgePositions() {
-		Vector3[] p = {
-			new Vector3( 0.0f,  Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
-			new Vector3(-Mathf.Cos(DIAGONAL_ANGLE),  0.0f)*screenSize*0.0254f*0.5f,
-			new Vector3(0.0f, -Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
-			new Vector3( Mathf.Cos(DIAGONAL_ANGLE), 0.0f)*screenSize*0.0254f*0.5f
-		};
-		return p;
-	}
+    Vector3[] CalculateEdgePositions() {
+        Vector3[] p = {
+            new Vector3( 0.0f,  Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
+            new Vector3(-Mathf.Cos(DIAGONAL_ANGLE),  0.0f)*screenSize*0.0254f*0.5f,
+            new Vector3(0.0f, -Mathf.Sin(DIAGONAL_ANGLE))*screenSize*0.0254f*0.5f,
+            new Vector3( Mathf.Cos(DIAGONAL_ANGLE), 0.0f)*screenSize*0.0254f*0.5f
+        };
+        return p;
+    }
 
     void ApplyPositions(Vector3[] pos) {
         for (int i = 0; i < pos.Length; ++i) {
@@ -70,7 +86,7 @@ public class CamAdjust : MonoBehaviour {
 
         GameObject cam;
         for (int i = 0; i < 4; ++i) {
-            cam = Instantiate(realSenseCam, transform.position + positions[i], Quaternion.identity);
+            cam = Instantiate(realSenseCam, transform.position + positions[i], transform.rotation);
             cam.transform.SetParent(transform);
             cams[i] = cam;
         }
