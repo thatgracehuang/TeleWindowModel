@@ -21,7 +21,7 @@ public class CamFulcrum : MonoBehaviour {
     [Tooltip("Maximim viewing distance in meters. Specs max is 10")]
     public float maxDist = 10f;
 
-    public Material fulcrumMaterial;
+    public Material frustrumMaterial;
     public bool displayFrustrum = true;
 
     Mesh fulcrum;
@@ -58,7 +58,7 @@ public class CamFulcrum : MonoBehaviour {
         mf = GetComponent<MeshFilter>();
         mf.mesh = fulcrum;
         mr = GetComponent<MeshRenderer>();
-        mr.material = fulcrumMaterial;
+        mr.material = frustrumMaterial;
 
         proj = GetComponent<Projector>();
     }

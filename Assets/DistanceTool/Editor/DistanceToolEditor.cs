@@ -59,8 +59,11 @@ public class DistanceToolEditor : Editor
 		_target.scaleToPixels = EditorGUILayout.Toggle("Show scale/pixel", _target.scaleToPixels, GUILayout.ExpandWidth(false));
 		
 		_target.pixelPerUnit = EditorGUILayout.IntField("pixels per unit", _target.pixelPerUnit , GUILayout.ExpandWidth(false));
-		
-		EditorGUILayout.EndVertical();
+
+        _target.startPoint = EditorGUILayout.Vector3Field("From:", _target.startPoint);
+        _target.endPoint = EditorGUILayout.Vector3Field("To:", _target.endPoint);
+
+        EditorGUILayout.EndVertical();
 		
 		//update and redraw:
 		if(GUI.changed){

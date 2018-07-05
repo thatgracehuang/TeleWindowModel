@@ -4,12 +4,9 @@ using UnityEngine;
 
 [ExecuteInEditMode]
 public class CamAdjust : MonoBehaviour {
-
-    public GameObject realSenseCam;
-    GameObject[] cams = new GameObject[4];
+    [Header("Screen Parameters")]
 
     // Assuming aspect ratio of 16:9
-
     [Range(20, 50)]
     [Tooltip("Diagonal of the screen in inches")]
     public float screenSize = 40;
@@ -19,8 +16,32 @@ public class CamAdjust : MonoBehaviour {
         Corners,
         Edges
     };
-
     public SetupType setup = SetupType.Corners;
+
+    [Header("Camera Parameters")]
+
+    public GameObject realSenseCam;
+    GameObject[] cams = new GameObject[4];
+
+    [Range(40, 120)]
+    [Tooltip("Horizontal FOV in degrees. Camera's default is 69.4")]
+    public float hFOV = 69.4f;
+
+    [Range(30, 100)]
+    [Tooltip("Vertical FOV in degrees. Camera's default is 42.5")]
+    public float vFOV = 42.5f;
+
+    [Range(0.3f, 10)]
+    [Tooltip("Minimum viewing distance in meters. Specs minimum is 0.3")]
+    public float minDist = 0.3f;
+
+    [Range(0.3f, 10)]
+    [Tooltip("Maximim viewing distance in meters. Specs max is 10")]
+    public float maxDist = 10f;
+
+    public Material frustrumMaterial;
+
+    public bool displayFrustrum = true;
 
     // Use this for initialization
     void Start() {
@@ -34,6 +55,7 @@ public class CamAdjust : MonoBehaviour {
         Vector3[] p = CalculatePositions();
 
         ApplyPositions(p);
+        ApplyParams();
     }
 
     Vector3[] CalculatePositions() {
@@ -44,6 +66,19 @@ public class CamAdjust : MonoBehaviour {
                 return CalculateEdgePositions();
             default:
                 return CalculateCornerPositions();
+        }
+    }
+
+    void ApplyParams() {
+        CamFulcrum cf;
+        foreach (GameObject c in cams) {
+            cf = c.GetComponent<CamFulcrum>();
+            cf.hFOV = hFOV;
+            cf.vFOV = vFOV;
+            cf.minDist = minDist;
+            cf.maxDist = maxDist;
+            cf.frustrumMaterial = frustrumMaterial;
+            cf.displayFrustrum = displayFrustrum;
         }
     }
 
