@@ -3895,7 +3895,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 498378, guid: 6cb6cf8b2413e7840993ecbcec6e26aa, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -1.119
+      value: -0.868
       objectReference: {fileID: 0}
     - target: {fileID: 498378, guid: 6cb6cf8b2413e7840993ecbcec6e26aa, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4686,7 +4686,7 @@ Projector:
   m_AspectRatio: 1.7777778
   m_Orthographic: 0
   m_OrthographicSize: 10
-  m_Material: {fileID: 2100000, guid: 2786c2b3dbe9d6940986e721fc832864, type: 2}
+  m_Material: {fileID: 2100000, guid: b7c25ad775444b541b33666286d67bad, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
     m_Bits: 0
