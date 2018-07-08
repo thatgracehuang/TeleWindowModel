@@ -134,7 +134,7 @@ public class CamAdjust : MonoBehaviour {
             cams[i].transform.position = transform.position + transform.rotation*pos[i];
 
             // Apply rotations based on tilts and camera position
-            Quaternion rot = Quaternion.Euler(LooseSign(pos[i].y) * vTilt, LooseSign(pos[i].x) * hTilt, 0);
+            Quaternion rot = Quaternion.Euler(LooseSign(pos[i].y) * vTilt, -LooseSign(pos[i].x) * hTilt, 0);
             rot = transform.rotation * rot;
 
             cams[i].transform.rotation = rot;

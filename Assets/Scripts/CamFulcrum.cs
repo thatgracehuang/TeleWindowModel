@@ -83,6 +83,9 @@ public class CamFulcrum : MonoBehaviour {
         proj.fieldOfView = vFOV;
 
         proj.material.SetVector("_Forward", (Vector4)proj.transform.forward);
+        proj.material.SetVector("_Up", (Vector4)proj.transform.up);
+        proj.material.SetVector("_Right", (Vector4)proj.transform.right);
+
 
         mr.enabled = displayFrustrum;
  

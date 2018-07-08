@@ -9,7 +9,9 @@ Shader "Custom/Projection" {
 		_Color ("Main Color", Color) = (1,1,1,1)
 		_ShadowTex ("Cookie", 2D) = "" {}
 		_FalloffTex ("FallOff", 2D) = "" {}
-		// _Forward ("Forward", Vector) = (0, 0, 1, 0)
+		_Forward ("Forward", Vector) = (0, 0, 1, 0)
+		_Up ("Up", Vector) = (0, 1, 0, 0)
+		_Right ("Right", Vector) = (1, 0, 0, 0)
 	}
 
 	Subshader {
@@ -61,6 +63,8 @@ Shader "Custom/Projection" {
 			sampler2D _ShadowTex;
 			sampler2D _FalloffTex;
 			float4 _Forward;
+			float4 _Up;
+			float4 _Right;
 
 			fixed4 frag (v2f i) : SV_TARGET
 			{
@@ -71,7 +75,15 @@ Shader "Custom/Projection" {
 				fixed4 texF = tex2Dproj (_FalloffTex, UNITY_PROJ_COORD(i.uvFalloff));
 				fixed4 res = texS * texF.a;
 
-        float alpha = dot(i.normal.xyz, -_Forward.xyz);
+				// float hAngle = asin((i.uvShadow.x - 1)/sqrt(pow(i.uvShadow.x-0.5, 2) + pow(i.uvShadow.z/i.uvShadow.w, 2)));
+				// float vAngle = asin((i.uvShadow.y - 1)/sqrt(pow(i.uvShadow.y-0.5, 2) + pow(i.uvShadow.z/i.uvShadow.w, 2)));
+
+				float3 ray = _Forward.xyz;
+				ray += _Up.xyz * (0.5 - i.uvShadow.y);
+				ray += _Right.xyz * (i.uvShadow.x - 0.5);
+				ray = normalize(ray);
+
+        float alpha = dot(i.normal.xyz, - ray);
         alpha = clamp(alpha, 0, 1);
 
 				UNITY_APPLY_FOG_COLOR(i.fogCoord, res, fixed4(0,0,0,0));
