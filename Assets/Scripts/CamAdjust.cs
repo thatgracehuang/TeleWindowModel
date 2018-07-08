@@ -23,6 +23,14 @@ public class CamAdjust : MonoBehaviour {
     public GameObject realSenseCam;
     GameObject[] cams = new GameObject[4];
 
+    [Range(0, 45)]
+    [Tooltip("Vertical tilt of the top/bottom cameras in degrees")]
+    public float vTilt = 0;
+
+    [Range(0, 45)]
+    [Tooltip("Horizontal tilt of the side cameras in degrees")]
+    public float hTilt = 0;
+
     [Range(40, 120)]
     [Tooltip("Horizontal FOV in degrees. Camera's default is 69.4")]
     public float hFOV = 69.4f;
@@ -42,6 +50,7 @@ public class CamAdjust : MonoBehaviour {
     public Material frustrumMaterial;
 
     public bool displayFrustrum = true;
+    public bool displaySpotlight = true;
 
     // Use this for initialization
     void Start() {
@@ -54,7 +63,7 @@ public class CamAdjust : MonoBehaviour {
     void Update() {
         Vector3[] p = CalculatePositions();
 
-        ApplyPositions(p);
+        ApplyTransforms(p);
         ApplyParams();
     }
 
@@ -79,6 +88,7 @@ public class CamAdjust : MonoBehaviour {
             cf.maxDist = maxDist;
             cf.frustrumMaterial = frustrumMaterial;
             cf.displayFrustrum = displayFrustrum;
+            cf.displaySpotlight = displaySpotlight;
         }
     }
 
@@ -104,13 +114,30 @@ public class CamAdjust : MonoBehaviour {
         return p;
     }
 
-    void ApplyPositions(Vector3[] pos) {
+    float LooseSign(float f, float delta = 0.05f) {
+        if (f > delta) {
+            return 1f;
+        } else if (f < -delta) {
+            return -1f;
+        }
+
+        return 0;
+    }
+
+    void ApplyTransforms(Vector3[] pos) {
         for (int i = 0; i < pos.Length; ++i) {
             if (i > cams.Length) {
                 break;
             }
 
+            // Apply position based on computed positions
             cams[i].transform.position = transform.position + pos[i];
+
+            // Apply rotations based on tilts and camera position
+            Quaternion rot = Quaternion.Euler(LooseSign(pos[i].y) * vTilt, LooseSign(pos[i].x) * hTilt, 0);
+            rot = transform.rotation * rot;
+
+            cams[i].transform.rotation = rot;
         }
     }
 

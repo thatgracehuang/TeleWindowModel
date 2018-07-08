@@ -23,6 +23,7 @@ public class CamFulcrum : MonoBehaviour {
 
     public Material frustrumMaterial;
     public bool displayFrustrum = true;
+    public bool displaySpotlight = true;
 
     Mesh fulcrum;
 
@@ -33,6 +34,7 @@ public class CamFulcrum : MonoBehaviour {
     MeshFilter mf;
     MeshRenderer mr;
     Projector proj;
+    Light spot;
 
 	// Use this for initialization
 	void Start () {
@@ -61,6 +63,7 @@ public class CamFulcrum : MonoBehaviour {
         mr.material = frustrumMaterial;
 
         proj = GetComponent<Projector>();
+        spot = GetComponent<Light>();
     }
 	
 	// Update is called once per frame
@@ -82,6 +85,12 @@ public class CamFulcrum : MonoBehaviour {
         proj.material.SetVector("_Forward", (Vector4)proj.transform.forward);
 
         mr.enabled = displayFrustrum;
+ 
+        spot.enabled = displaySpotlight;
+        if (spot.enabled) {
+            spot.spotAngle = hFOV;
+            spot.range = maxDist;
+        }
     }
 
     //private void OnDrawGizmos() {
