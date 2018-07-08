@@ -2715,7 +2715,7 @@ MonoBehaviour:
   realSenseCam: {fileID: 1855867112895838, guid: a348e0a933a64e24898da245326d8b42,
     type: 2}
   vTilt: 0
-  hTilt: 0
+  hTilt: 17.54
   hFOV: 69.4
   vFOV: 42.5
   minDist: 0.3
@@ -3100,8 +3100,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 655793699}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.43943968, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0.15246838, z: -0, w: 0.98830837}
+  m_LocalPosition: {x: -0.43943968, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 372335259}
@@ -4877,8 +4877,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1144386089}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.43943968, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: 0.15246838, z: -0, w: 0.98830837}
+  m_LocalPosition: {x: 0.43943968, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1672123941}
