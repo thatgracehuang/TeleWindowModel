@@ -14,9 +14,8 @@
 
 ### Pieces to Print
 
-- 4x Camera Attachments 1 and 2 (or 2x Bruce's Horizontal and Vertical Mounts)
-
-- 2x Joint Unthreaded Pairs
+- 4x Camera Attachments 1 and 2 (These files' units are all in mm, approximate sizes are 4cm x 5cm x 2.2 and 6.4cm x 11.3cm x 2.4cm)(or alternatively print 2x Bruce's Horizontal and Vertical Mounts, units also in mm)
+- 2x Joint Unthreaded Pairs (This file's units are in meters, approx size should be 7cm x 5cm x 5cm)
 
 ### Instructions 
 -  Print all pieces
