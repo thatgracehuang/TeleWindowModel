@@ -22,7 +22,7 @@
 
 ### Instructions 
 -  Print all pieces
--  On all the screen attachments, thread the bolt holes (the smaller holes) with an M6 Screw Tap. On the Camera Attachment 1 and Bruce's mounts, not all the holes need to be bolted, you can choose which you plan to use and thread those with the M5 screw tap. 
+-  On all the screen attachments, thread the bolt holes (the smaller holes) with an M6 Screw Tap. On the Camera Attachment 1 and Bruce's mounts, not all the holes need to be bolted to save time, you can choose which you prefer to use and thread those with the M5 screw tap. 
 - On Camera Attachment 2 or Bruce's Mounts, screw in the Realsense Cameras.
 - Attach each of these pieces to the four corners of the screen using bolts at the back. Make sure they are aligned for the rods to be placed correctly. Rods can be aligned so the horizontal or vertical sides are frontmost depending on the orientation of the screen 
 -  Thread the rods into the attachment holes, adding the camera attachments inbetween and fasten everything with bolts. The screen attachments use M6 bolts, and the camera attachments use M5 bolts. 
