@@ -8,7 +8,7 @@
 
 - Tapping Screws for M5 and M6 bolts
 
-- Equipment to Fasten bolts
+- Equipment to tighten bolts
 
 
 
