@@ -68,7 +68,7 @@ Shader "Custom/Projection" {
 
 			fixed4 frag (v2f i) : SV_TARGET
 			{
-				fixed4 texS = tex2Dproj (_ShadowTex, UNITY_PROJ_COORD(i.uvShadow));
+				fixed4 texS = tex2Dproj(_ShadowTex, UNITY_PROJ_COORD(i.uvShadow));
 				texS.rgb *= _Color.rgb;
 				texS.a = 1.0-texS.a;
 
@@ -86,7 +86,7 @@ Shader "Custom/Projection" {
         float alpha = dot(i.normal.xyz, - ray);
         alpha = clamp(alpha, 0, 1);
 
-				UNITY_APPLY_FOG_COLOR(i.fogCoord, res, fixed4(0,0,0,0));
+				UNITY_APPLY_FOG_COLOR  (i.fogCoord, res, fixed4(0,0,0,0));
         // res.a = alpha;
         res *= alpha;
 				return res;
